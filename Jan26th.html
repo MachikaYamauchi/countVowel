@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <title>Document</title>
+
+    <style>
+        body {
+            padding: 65px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function(){
+
+            $("#input").on("blur keyup change paste", function(e){
+                let individualVowel = countIndividual($(this).val());
+                let totalCount = individualVowel.A + individualVowel.I + individualVowel.U + individualVowel.E + individualVowel.O;
+                $("#result").html(`<p>
+                    The total number of string is ${totalCount} 
+                    <br>
+                    A is ${individualVowel.A},
+                    I is ${individualVowel.I},
+                    U is ${individualVowel.U},
+                    E is ${individualVowel.E},
+                    O is ${individualVowel.O},
+
+                    `);
+            })
+
+        })
+
+        // // TOTAL VOWEL COUNT -----------------------------------------------------------------------------------
+        // const countTotal = (str) => {
+
+        //     let count = 0;
+        //     for ($i = 0; $i < str.length; $i++) {
+        //         let strlower = str.charAt($i).toLowerCase();
+        //         if (strlower === "a" || strlower === "i" || strlower === "u" || strlower === "e" || strlower === "o") {
+        //             count += 1;
+        //         }
+        //     }
+        //     return count;
+        // }
+        
+
+        // John's idea
+        // const countTotalVowels = (inputString) => {
+        //     const vowels = "aiueo";
+        //     count = 0;
+        //     for (let i = 0; i < inputString.length; i++) {
+        //         if(vowels.indexOf(inoutString.toLowerCase().charAt(i)) !== -1) count++;
+        //     }
+        //     return count;
+        // }
+
+        // var div = document.getElementById("divID") === $("#divID")
+
+
+        // INDIVIDUAL VOWEL COUNT------------------------------------------------------------------------------
+        const countIndividual = (str2) => {
+
+            // let countA = 0;
+            // let countI = 0;
+            // let countU = 0;
+            // let countE = 0;
+            // let countO = 0;
+
+            // Assign single value tp nmultiple variables
+            let countA = countI = countU = countE = countO =0;
+            
+            for (let i = 0; i < str2.length; i++) {
+                     if (str2.charAt(i).toLowerCase() === "a") countA++;
+                else if (str2.charAt(i).toLowerCase() === "i") countI++;
+                else if (str2.charAt(i).toLowerCase() === "u") countU++;
+                else if (str2.charAt(i).toLowerCase() === "e") countE++;
+                else if (str2.charAt(i).toLowerCase() === "o") countO++;
+            }
+            return {
+                A:countA,
+                I:countI,
+                U:countU,
+                E:countE,
+                O:countO
+
+            }
+        }
+
+
+    </script>
+
+
+
+
+</head>
+<body>
+    <h3>Vowel Counter</h3>
+    <div class="mb-3 textarea">
+        <label for="input" class="form-label">Enter String</label>
+        <textarea class="form-control" id="input" rows="3"></textarea>
+    </div>
+
+    <!-- <div class="button">
+    <button class="btn btn-primary ml-5" id = "button">Count</button>
+    </div> -->
+
+    <div id="result"></div>
+    
+</body>
+</html>
